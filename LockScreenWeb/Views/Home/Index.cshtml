@@ -1,0 +1,33 @@
+﻿<div class="jumbotron">
+    <h1>Lock Screen</h1>
+    <p>This web app is demonstrating the use of local Windows 10 API's when packaged inside an .appx</p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Select your local picture</h2>
+        <p>
+            Just click the button and the file picker will open. If you're not running inside a Windows 10 app
+            with full Windows Runtime access you'll just be prompted by an alert.
+        </p>
+        <p><button id="action">Open File Picker</button></p>
+    </div>
+    <div id="pictures" class="col-md-8">
+        <div class="row">
+            <h2>Your selected image</h2>
+            <p>The images you selected will be displayed here and will also be placed on your lock screen! Each image will be displayed after 15 minutes.</p>
+        </div>
+        <div id="photos" class="row"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        $("#action").click(function () {
+            if (window.Windows) {
+                HostedWebApp.handleAction();
+            } else {
+                alert("This is the web, what do you expect?");
+            }
+        });
+    });
+</script>
